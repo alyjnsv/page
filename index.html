@@ -146,6 +146,8 @@
       max-width: 720px;
     }
     .workflow-viewer {
+      position: relative;
+      overflow: hidden;
       margin-top: 18px;
       border-radius: 18px;
       box-shadow: var(--shadow);
@@ -155,6 +157,16 @@
                   radial-gradient(circle at 100% 0, rgba(140,123,255,0.12), transparent 55%),
                   rgba(3,7,18,0.9);
       min-height: 260px;
+    }
+    .workflow-viewer__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(12px) brightness(0.35);
+      transform: scale(1.05);
+      pointer-events: none;
     }
     .workflow-viewer__grid {
       display: grid;
@@ -259,6 +271,7 @@
         <p class="n8n-note">Сейчас здесь краткое текстовое описание. В следующем шаге сюда встанет интерактивная визуализация по файлу <code>Content Analyzer (Tiktok).json</code>.</p>
       </div>
       <div class="workflow-viewer" id="workflow-viewer">
+        <img src="pic1.png" alt="Схема воркфлоу n8n" class="workflow-viewer__bg" loading="lazy" />
         <p style="margin:0 0 8px; font-weight:600;">Краткая структура воркфлоу:</p>
         <div class="workflow-viewer__grid">
           <div class="workflow-node">
