@@ -138,33 +138,50 @@
       .nav { flex-direction: column; gap: 10px; }
       nav a { margin: 0 10px; }
     }
-    /* n8n demo section */
+    /* n8n section / workflow viewer */
     .n8n-section {
       margin-top: 48px;
     }
     .n8n-description {
       max-width: 720px;
     }
-    .n8n-frame-wrapper {
+    .workflow-viewer {
       margin-top: 18px;
       border-radius: 18px;
-      overflow: hidden;
       box-shadow: var(--shadow);
       border: 1px solid var(--card-border);
+      padding: 20px;
       background: radial-gradient(circle at 0 0, rgba(106,227,255,0.12), transparent 55%),
                   radial-gradient(circle at 100% 0, rgba(140,123,255,0.12), transparent 55%),
                   rgba(3,7,18,0.9);
+      min-height: 260px;
     }
-    .n8n-iframe {
-      width: 100%;
-      height: 620px;
-      border: none;
-      background: #020617;
+    .workflow-viewer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
     }
-    .n8n-note {
-      font-size: 13px;
+    .workflow-node {
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid var(--card-border);
+    }
+    .workflow-node__type {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--muted);
-      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+    .workflow-node__name {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .workflow-node__meta {
+      font-size: 12px;
+      color: var(--muted);
     }
   </style>
 </head>
@@ -235,21 +252,42 @@
     </section>
 
     <section id="n8n" class="n8n-section">
-      <h2>Демо воркфлоу в n8n</h2>
+      <h2>Воркфлоу в n8n: Content Analyzer (TikTok)</h2>
       <div class="card n8n-description">
-        <p>Ниже — живой пример воркфлоу из моего self-hosted n8n. Здесь я использую триггеры, интеграции и AI, чтобы отвечать на вопросы к базе данных в диалоговом формате.</p>
-        <p>Такой формат удобен для демонстрации: рекрутер или заказчик сразу видит не только скриншоты, но и реальную схему автоматизации.</p>
-        <p class="n8n-note"><strong>Важно:</strong> перед публикацией сюда стоит подставить ваш реальный публичный URL превью воркфлоу n8n вместо плейсхолдера ниже.</p>
+        <p>Я собираю сложные сценарии в n8n — ниже будет собственный viewer, который визуализирует воркфлоу по его JSON-описанию (без привязки к UI n8n).</p>
+        <p>Это позволяет делиться архитектурой автоматизации безопасно: без логина, токенов и доступа к прод-среде, только структура и смысл шагов.</p>
+        <p class="n8n-note">Сейчас здесь краткое текстовое описание. В следующем шаге сюда встанет интерактивная визуализация по файлу <code>Content Analyzer (Tiktok).json</code>.</p>
       </div>
-      <div class="n8n-frame-wrapper">
-        <!-- TODO: Замените URL внутри src на реальный публичный адрес вашего n8n-превью -->
-        <iframe
-          class="n8n-iframe"
-          src="https://n8n-node-production-e4a5.up.railway.app/workflow/e9EDmZG65Ur16Fm9"
-          allow="clipboard-write">
-        </iframe>
+      <div class="workflow-viewer" id="workflow-viewer">
+        <p style="margin:0 0 8px; font-weight:600;">Краткая структура воркфлоу:</p>
+        <div class="workflow-viewer__grid">
+          <div class="workflow-node">
+            <div class="workflow-node__type">Триггер</div>
+            <div class="workflow-node__name">Schedule Trigger</div>
+            <div class="workflow-node__meta">Запускает анализ по расписанию (каждые 7 дней).</div>
+          </div>
+          <div class="workflow-node">
+            <div class="workflow-node__type">Данные</div>
+            <div class="workflow-node__name">Airtable: Get Topics / Reels</div>
+            <div class="workflow-node__meta">Берёт темы и ролики из Airtable, сортирует по просмотрам и выбирает топ‑N.</div>
+          </div>
+          <div class="workflow-node">
+            <div class="workflow-node__type">Интеграции</div>
+            <div class="workflow-node__name">Apify, Google Drive, Gemini</div>
+            <div class="workflow-node__meta">Скачивает TikTok, сохраняет в Drive, передаёт видео в Gemini для анализа.</div>
+          </div>
+          <div class="workflow-node">
+            <div class="workflow-node__type">AI‑анализ</div>
+            <div class="workflow-node__name">Gemini: Analyze</div>
+            <div class="workflow-node__meta">Модель возвращает формат, тон, хук, визуальный хук, CTA и текстовый разбор ролика.</div>
+          </div>
+          <div class="workflow-node">
+            <div class="workflow-node__type">Запись результата</div>
+            <div class="workflow-node__name">Airtable: Add analysis</div>
+            <div class="workflow-node__meta">Обновляет таблицу с анализом: метрики, категория, инсайты и рекомендации.</div>
+          </div>
+        </div>
       </div>
-      <p class="n8n-note">Если фрейм не загрузился, проверьте, что ваш n8n доступен по HTTPS и разрешает встраивание в iframe (нет жёсткого X-Frame-Options / frame-ancestors).</p>
     </section>
 
     <section id="skills" style="margin-top:32px;">
