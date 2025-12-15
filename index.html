@@ -138,6 +138,34 @@
       .nav { flex-direction: column; gap: 10px; }
       nav a { margin: 0 10px; }
     }
+    /* n8n demo section */
+    .n8n-section {
+      margin-top: 48px;
+    }
+    .n8n-description {
+      max-width: 720px;
+    }
+    .n8n-frame-wrapper {
+      margin-top: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--card-border);
+      background: radial-gradient(circle at 0 0, rgba(106,227,255,0.12), transparent 55%),
+                  radial-gradient(circle at 100% 0, rgba(140,123,255,0.12), transparent 55%),
+                  rgba(3,7,18,0.9);
+    }
+    .n8n-iframe {
+      width: 100%;
+      height: 620px;
+      border: none;
+      background: #020617;
+    }
+    .n8n-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -147,6 +175,7 @@
       <nav>
         <a href="#about">Обо мне</a>
         <a href="#projects">Проекты</a>
+        <a href="#n8n">n8n</a>
         <a href="#skills">Навыки</a>
         <a href="#contact">Контакты</a>
       </nav>
@@ -156,16 +185,16 @@
   <main>
     <section class="hero card" id="about">
       <div>
-        <div class="badge">Дизайн · Разработка · Продукт</div>
-        <h1>Привет! Я — [Ваше имя], создаю цифровые продукты и интерфейсы.</h1>
-        <p>Специализируюсь на современной frontend-разработке, люблю чистый код и выразительные интерфейсы с акцентом на UX и скорость.</p>
+        <div class="badge">Дизайн · Разработка · Автоматизация</div>
+        <h1>Привет! Я — [Ваше имя], собираю интерфейсы и автоматизации на n8n.</h1>
+        <p>Помогаю бизнесу экономить время и деньги с помощью автоматизации процессов, интеграций и умных пайплайнов, а также делаю аккуратные, быстрые интерфейсы.</p>
         <div class="tags">
-          <span class="tag">React / Next.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">UI Motion</span>
-          <span class="tag">Design Systems</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Интеграции</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Frontend</span>
         </div>
-        <a class="button" href="#contact">Связаться →</a>
+        <a class="button" href="#n8n">Смотреть демо n8n →</a>
       </div>
       <div>
         <img src="https://images.unsplash.com/photo-1527443224154-df7e4c48c8a6?auto=format&fit=crop&w=900&q=80" alt="Creative workspace" />
@@ -205,12 +234,30 @@
       </div>
     </section>
 
+    <section id="n8n" class="n8n-section">
+      <h2>Демо воркфлоу в n8n</h2>
+      <div class="card n8n-description">
+        <p>Ниже — живой пример воркфлоу из моего self-hosted n8n. Здесь я использую триггеры, интеграции и AI, чтобы отвечать на вопросы к базе данных в диалоговом формате.</p>
+        <p>Такой формат удобен для демонстрации: рекрутер или заказчик сразу видит не только скриншоты, но и реальную схему автоматизации.</p>
+        <p class="n8n-note"><strong>Важно:</strong> перед публикацией сюда стоит подставить ваш реальный публичный URL превью воркфлоу n8n вместо плейсхолдера ниже.</p>
+      </div>
+      <div class="n8n-frame-wrapper">
+        <!-- TODO: Замените URL внутри src на реальный публичный адрес вашего n8n-превью -->
+        <iframe
+          class="n8n-iframe"
+          src="https://your-n8n-domain.example.com/workflows/demo-preview"
+          allow="clipboard-write">
+        </iframe>
+      </div>
+      <p class="n8n-note">Если фрейм не загрузился, проверьте, что ваш n8n доступен по HTTPS и разрешает встраивание в iframe (нет жёсткого X-Frame-Options / frame-ancestors).</p>
+    </section>
+
     <section id="skills" style="margin-top:32px;">
       <h2>Навыки</h2>
       <div class="grid">
         <div class="card">
           <p style="font-weight:700; margin-bottom:6px;">Технологии</p>
-          <p>TypeScript, React, Next.js, Node.js, REST/GraphQL, Webpack/Vite.</p>
+          <p>TypeScript, React, Next.js, Node.js, n8n, REST/GraphQL, Webhook-автоматизации.</p>
         </div>
         <div class="card">
           <p style="font-weight:700; margin-bottom:6px;">Дизайн</p>
@@ -227,8 +274,8 @@
       <h2>Опыт</h2>
       <div class="card timeline">
         <div class="timeline-item">
-          <p style="font-weight:700; margin:0;">Lead Frontend · 2023—сейчас</p>
-          <p>Руковожу разработкой интерфейсов: архитектура, перфоманс, наставничество команды.</p>
+          <p style="font-weight:700; margin:0;">Lead Frontend / Automation · 2023—сейчас</p>
+          <p>Руковожу разработкой интерфейсов и автоматизаций: архитектура, перфоманс, интеграции, наставничество команды.</p>
         </div>
         <div class="timeline-item">
           <p style="font-weight:700; margin:0;">Senior UI Engineer · 2021—2023</p>
@@ -254,7 +301,6 @@
     </section>
   </main>
 
-  <footer>© 2025 · Создано с вниманием к деталям и скорости.</footer>
+  <footer>© 2025 · Создано с вниманием к деталям, скоростью и автоматизацией на n8n.</footer>
 </body>
 </html>
-
