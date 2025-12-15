@@ -167,6 +167,11 @@
       filter: blur(12px) brightness(0.35);
       transform: scale(1.05);
       pointer-events: none;
+      z-index: 0;
+    }
+    .workflow-viewer > *:not(.workflow-viewer__bg) {
+      position: relative;
+      z-index: 1;
     }
     .workflow-viewer__grid {
       display: grid;
